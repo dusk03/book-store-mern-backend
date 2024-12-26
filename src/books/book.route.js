@@ -1,9 +1,10 @@
 const express = require('express');
 const { postABook, getAllBooks, getSingleBook, UpdateBook, deleteABook } = require('./book.controller');
+const verifyAdminToken = require('../middleware/verifyAdminToken');
 const router = express.Router();
 
 
-router.post("/create-book", postABook);
+router.post("/create-book", verifyAdminToken, postABook);
 
 router.get("/", getAllBooks);
 
